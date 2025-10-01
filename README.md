@@ -18,7 +18,9 @@ GRUPO 5:
 
 - Una API REST para gestionar proyectos, tareas y usuarios. Se centra en proyectos que contienen tareas, y en tareas asignadas a usuarios.
 - El sistema utiliza una partición técnica y un enfoque ACID para garantizar la consistencia de los datos.
-- Desarrollada en Java con Spring Boot, Spring Data JPA y PostgreSQL.
+- Backend desarrollado en Java con el framework Spring Boot con Spring Data JPA para facilitar el acceso a datos.
+- La base de datos es una única instancia de PostgreSQL, tecnología de base de datos relacionales. En este sentido, se siguen los principios ACID para garantizar la consistencia de los datos.
+- El testing de la aplicación se realiza con Postman.
 - Vease el informe de la TFU en Webasignatura para más información.
 
 ### Requisitos
@@ -40,6 +42,6 @@ GRUPO 5:
     * projectmanager_app → Spring Boot API en puerto 8080
     * projectmanager_db → PostgreSQL en puerto 5432
 
-### Test
+### Testing
 
 Utilizar la colección de [Postman](UT3%20TFU.postman_collection.json) para testear los endpoints.
