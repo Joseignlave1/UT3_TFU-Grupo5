@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    container_name: projectmanager_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/projectmanager
+      SPRING_DATASOURCE_USERNAME: projectuser
+      SPRING_DATASOURCE_PASSWORD: projectpass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: projectmanager_db
+    environment:
+      POSTGRES_DB: projectmanager
+      POSTGRES_USER: projectuser
+      POSTGRES_PASSWORD: projectpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
