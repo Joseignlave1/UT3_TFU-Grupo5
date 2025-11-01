@@ -2,38 +2,50 @@ package com.example.ut3_tfu.controllers;
 
 import com.example.ut3_tfu.DTOs.project.ProjectRequestDTO;
 import com.example.ut3_tfu.DTOs.project.ProjectResponseDTO;
-import com.example.ut3_tfu.DTOs.task.TaskResponseDTO;
-
-import com.example.ut3_tfu.services.interfaces.ProjectService;
-
+import com.example.ut3_tfu.cqrs.ProjectCommandService;
+import com.example.ut3_tfu.cqrs.ProjectQueryService;
+import com.example.ut3_tfu.views.ProjectView;
+import com.example.ut3_tfu.views.TaskView;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
 
+/**
+ * Controlador de proyectos con CQRS.
+ * - POST: Usa CommandService (escritura)
+ * - GET: Usa QueryService (lectura desde vistas materializadas)
+ */
 @RestController
 @RequestMapping("/api/projects")
 public class ProjectController {
-    private final ProjectService svc;
-    public ProjectController(ProjectService svc) { this.svc = svc; }
+    
+    private final ProjectCommandService commandService;
+    private final ProjectQueryService queryService;
+    
+    public ProjectController(ProjectCommandService commandService,
+                           ProjectQueryService queryService) {
+        this.commandService = commandService;
+        this.queryService = queryService;
+    }
 
     @PostMapping
     public ResponseEntity<ProjectResponseDTO> create(@RequestBody ProjectRequestDTO dto) {
-        return ResponseEntity.status(201).body(svc.create(dto));
+        return ResponseEntity.status(201).body(commandService.createProject(dto));
     }
 
     @GetMapping
-    public ResponseEntity<Set<ProjectResponseDTO>> findAll() {
-        return ResponseEntity.ok(svc.findAll());
+    public ResponseEntity<List<ProjectView>> findAll() {
+        return ResponseEntity.ok(queryService.getAllProjects());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ProjectResponseDTO> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(svc.findById(id));
+    public ResponseEntity<ProjectView> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(queryService.getProjectById(id));
     }
 
     @GetMapping("{id}/tasks")
-    public ResponseEntity<Set<TaskResponseDTO>> findTasksByProject(@PathVariable Long id) {
-        return ResponseEntity.ok(svc.findTasksByProject(id));
+    public ResponseEntity<List<TaskView>> findTasksByProject(@PathVariable Long id) {
+        return ResponseEntity.ok(queryService.getTasksByProject(id));
     }
 }

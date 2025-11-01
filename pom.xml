@@ -60,6 +60,11 @@
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version> <!-- or latest -->
         </dependency>
+        <!-- Para manejo de eventos -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
