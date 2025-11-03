@@ -7,7 +7,7 @@ PROXY_BASE = "http://localhost:8000/api"
 PATH_OK     = "/users"
 # PATH_BAD  = "/does-not-exist"              # 404 example
 
-REQS          = 60                            # Total de peticiones a enviar.
+REQS          = 250                           # Total de peticiones a enviar.
 SLEEP_BETWEEN = 0.5                           # Segundos entre peticiones.
 
 def ts() -> str:
