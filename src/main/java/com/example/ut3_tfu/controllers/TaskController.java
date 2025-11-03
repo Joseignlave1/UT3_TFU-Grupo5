@@ -33,7 +33,7 @@ public class TaskController {
         return ResponseEntity.status(201).body(commandService.createTask(dto));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<TaskResponseDTO> update(@PathVariable Long id, @RequestBody TaskRequestDTO dto) {
         return ResponseEntity.ok(commandService.updateTask(id, dto));
     }
@@ -53,7 +53,7 @@ public class TaskController {
         return ResponseEntity.ok(queryService.getTasksByStatus(status));
     }
 
-    @PostMapping("/{taskId}/users/{userId}")
+    @PostMapping("{taskId}/users/{userId}")
     public ResponseEntity<Void> assignUser(@PathVariable Long taskId, @PathVariable Long userId) {
         commandService.assignUserToTask(taskId, userId);
         return ResponseEntity.status(204).build();

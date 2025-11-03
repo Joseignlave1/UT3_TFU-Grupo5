@@ -38,9 +38,4 @@ public class UserController {
     public ResponseEntity<List<UserView>> findAll() {
         return ResponseEntity.ok(queryService.getAllUsers());
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<UserView> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(queryService.getUserById(id));
-    }
 }

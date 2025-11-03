@@ -39,12 +39,12 @@ public class ProjectController {
         return ResponseEntity.ok(queryService.getAllProjects());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<ProjectView> findById(@PathVariable Long id) {
         return ResponseEntity.ok(queryService.getProjectById(id));
     }
 
-    @GetMapping("/{id}/tasks")
+    @GetMapping("{id}/tasks")
     public ResponseEntity<List<TaskView>> findTasksByProject(@PathVariable Long id) {
         return ResponseEntity.ok(queryService.getTasksByProject(id));
     }
