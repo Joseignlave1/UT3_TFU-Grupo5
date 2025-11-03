@@ -42,4 +42,4 @@ GRUPO 5:
 ### Testing
 
 - Utilizar la colección de [Postman](UT3%20TFU.postman_collection.json) para testear los endpoints.
-- También utilizar los [scripts](scripts) para testear la aplicación de los patrones arquitectónicos.
+- Utilizar los [scripts](scripts) para testear la aplicación de los patrones arquitectónicos.
